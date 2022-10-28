@@ -13,11 +13,9 @@ const render = require('./src/page-template.js');
 const teamMembers = [];
 
 
-// function for creating manager - inquirer questions
-
+// set-up
 const roles = ["manager", "engineer", "intern"];
 const libs = [Manager, Engineer, Intern];
-let roleCnt = 0;
 
 const managerTest = {
     type: 'input',
@@ -37,8 +35,7 @@ const internTest = {
     name: 'school'
 }
 
-// follow the same pattern for each type of employee
-// build a function for them that uses inquirer
+// function for adding members - inquirer questions
 function callInquirer(role) {
 
     inquirer
@@ -46,7 +43,7 @@ function callInquirer(role) {
             {
                 type: 'input',
                 message: `Enter team ${role}\'s name`,
-                name: 'managerName'
+                name: 'teamRole'
             },
             {
                 type: 'input',
@@ -89,35 +86,12 @@ function callInquirer(role) {
                             break;
                         case "Finish":
                             // call function to generate HTML
+                            // fs.writeFile(/path, generateTeam(teamMembers));
                     }
                 });
 
         });
 }
 
-/*
-async function callInquirers() {
-    // roles.forEach( (role) => await callInquirer );
-
-    console.log("test0");
-    const test1 = await callInquirer("manager");
-    console.log(test1);
-    // const inq2 = await inquirer.prompt([...]);
-    const test2 = await callInquirer("engineer");
-    console.log(test2);
-
-    // do stuff with results inq1 and inq2
-}
-*/
-
+// starting up function
 callInquirer("manager");
-
-
-// STRUCTURING IT
-
-// start with manager function, since every team needs a manager
-// at the end of manager function, call a createTeam function
-
-// this function would simply ask the user which type of employee they would like to add, based on their choice, run the correesponding function
-
-// at the end, use fs to write file while sending the team array over to the function you brought in from page-template.js

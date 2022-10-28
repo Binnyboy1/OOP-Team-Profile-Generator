@@ -64,40 +64,33 @@ function callInquirer(role) {
             const ans = Object.values(response);
             const [param1, param2, param3, param4] = ans;
             // take those questions and create a new Role with the user provided answers
-            const addition = new (libs[roleCnt])(param1, param2, param3, param4);
+            const addition = new (libs[roles.indexOf(role)])(param1, param2, param3, param4);
             // push that new Role to the team members array
             teamMembers.push(addition);
             console.log(teamMembers);
-            // const filename = `${data.fullName.toLowerCase().split(' ').join('')}.json`;
-            // fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) => 
-            //     err ? console.log(err) : console.log('Success')
-            // );
-
-            // roleCnt++;
-            // callInquirer(roles[roleCnt]);
 
             // Selection menu
             inquirer
-            .prompt([
-                {
-                    type: 'list',
-                    message: 'Select next step',
-                    choices: ["Add engineer", "Add intern", "Finish"],
-                    name: 'next'
-                }
-            ])
-            .then((response) => {
-                switch (response.next) {
-                    case "Add engineer":
-                        callInquirer("engineer");
-                        break;
-                    case "Add intern":
-                        callInquirer("intern");
-                        break;
-                    case "Finish":
-                        // call function to generate HTML
-                }
-            });
+                .prompt([
+                    {
+                        type: 'list',
+                        message: 'Select next step',
+                        choices: ["Add engineer", "Add intern", "Finish"],
+                        name: 'next'
+                    }
+                ])
+                .then((response) => {
+                    switch (response.next) {
+                        case "Add engineer":
+                            callInquirer("engineer");
+                            break;
+                        case "Add intern":
+                            callInquirer("intern");
+                            break;
+                        case "Finish":
+                            // call function to generate HTML
+                    }
+                });
 
         });
 }

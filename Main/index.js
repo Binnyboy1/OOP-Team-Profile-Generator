@@ -14,64 +14,99 @@ const teamMembers = [];
 
 
 // function for creating manager - inquirer questions
+
+const roles = ["manager", "engineer", "intern"];
+let roleCnt = 0;
+
 const managerTest = {
     type: 'input',
     message: 'Enter office number',
     name: 'officeNum'
 }
 
-inquirer
-    .prompt([
-        {
-            type: 'input',
-            message: 'Enter team manager\'s name',
-            name: 'managerName'
-        },
-        {
-            type: 'input',
-            message: 'Enter employee ID',
-            name: 'employeeID'
-        },
-        {
-            type: 'input',
-            message: 'Enter email address',
-            name: 'email'
-        },
-        managerTest
-    ])
-    // .then((response) =>
-    //     fs.writeFile(
-    //         `${response.fullName}.txt`,
-    //         `
-    //         Languages:
-    //         ${response.languages}\n
-    //         Communication preference:
-    //         ${response.communication}
-    //         `,
-    //         (err) => err ? console.error(err) : console.log('Custom File stored')
-    //     )
-    // )
-    .then((response) => {
-        const ans = Object.values(response);
-        const [param1, param2, param3, param4] = ans;
+const engineerTest = {
+    type: 'input',
+    message: 'Enter GitHub username',
+    name: 'github'
+}
 
-        // take those questions and create a new Manager with the user provided answers
-        const manager = new Manager(param1, param2, param3, param4);
-        
-        // push that new Manager to the team members array
-        teamMembers.push(manager);
-        console.log(teamMembers);
+const internTest = {
+    type: 'input',
+    message: 'Enter school',
+    name: 'school'
+}
 
+function callInquirer(role) {
 
-        // const filename = `${data.fullName.toLowerCase().split(' ').join('')}.json`;
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                message: `Enter team ${role}\'s name`,
+                name: 'managerName'
+            },
+            {
+                type: 'input',
+                message: 'Enter employee ID',
+                name: 'employeeID'
+            },
+            {
+                type: 'input',
+                message: 'Enter email address',
+                name: 'email'
+            },
+            eval(`${role}Test`)
+        ])
+        // .then((response) =>
+        //     fs.writeFile(
+        //         `${response.fullName}.txt`,
+        //         `
+        //         Languages:
+        //         ${response.languages}\n
+        //         Communication preference:
+        //         ${response.communication}
+        //         `,
+        //         (err) => err ? console.error(err) : console.log('Custom File stored')
+        //     )
+        // )
+        .then((response) => {
+            const ans = Object.values(response);
+            const [param1, param2, param3, param4] = ans;
+            // take those questions and create a new Manager with the user provided answers
+            const manager = new Manager(param1, param2, param3, param4);
+            // push that new Manager to the team members array
+            teamMembers.push(manager);
+            console.log(teamMembers);
+            // const filename = `${data.fullName.toLowerCase().split(' ').join('')}.json`;
+            // fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) => 
+            //     err ? console.log(err) : console.log('Success')
+            // );
 
-        // fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) => 
-        //     err ? console.log(err) : console.log('Success')
-        // );
-    });
-  
-    // follow the same pattern for each type of employee
-    // build a function for them that uses inquirer
+            roleCnt++;
+            callInquirer(roles[roleCnt]);
+        });
+
+        // follow the same pattern for each type of employee
+        // build a function for them that uses inquirer
+
+}
+
+/*
+async function callInquirers() {
+    // roles.forEach( (role) => await callInquirer );
+
+    console.log("test0");
+    const test1 = await callInquirer("manager");
+    console.log(test1);
+    // const inq2 = await inquirer.prompt([...]);
+    const test2 = await callInquirer("engineer");
+    console.log(test2);
+
+    // do stuff with results inq1 and inq2
+}
+*/
+
+callInquirer("manager");
 
 
 // STRUCTURING IT

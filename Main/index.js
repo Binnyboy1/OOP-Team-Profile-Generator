@@ -14,11 +14,64 @@ const teamMembers = [];
 
 
 // function for creating manager - inquirer questions
-  // take those questions and create a new Manager with the user provided answers
-  // push that new Manager to the team members array
+const managerTest = {
+    type: 'input',
+    message: 'Enter office number',
+    name: 'officeNum'
+}
 
-  // follow the same pattern for each type of employee
-  // build a function for them that uses inquirer
+inquirer
+    .prompt([
+        {
+            type: 'input',
+            message: 'Enter team manager\'s name',
+            name: 'managerName'
+        },
+        {
+            type: 'input',
+            message: 'Enter employee ID',
+            name: 'employeeID'
+        },
+        {
+            type: 'input',
+            message: 'Enter email address',
+            name: 'email'
+        },
+        managerTest
+    ])
+    // .then((response) =>
+    //     fs.writeFile(
+    //         `${response.fullName}.txt`,
+    //         `
+    //         Languages:
+    //         ${response.languages}\n
+    //         Communication preference:
+    //         ${response.communication}
+    //         `,
+    //         (err) => err ? console.error(err) : console.log('Custom File stored')
+    //     )
+    // )
+    .then((response) => {
+        const ans = Object.values(response);
+        const [param1, param2, param3, param4] = ans;
+
+        // take those questions and create a new Manager with the user provided answers
+        const manager = new Manager(param1, param2, param3, param4);
+        
+        // push that new Manager to the team members array
+        teamMembers.push(manager);
+        console.log(teamMembers);
+
+
+        // const filename = `${data.fullName.toLowerCase().split(' ').join('')}.json`;
+
+        // fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) => 
+        //     err ? console.log(err) : console.log('Success')
+        // );
+    });
+  
+    // follow the same pattern for each type of employee
+    // build a function for them that uses inquirer
 
 
 // STRUCTURING IT

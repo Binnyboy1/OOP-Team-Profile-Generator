@@ -75,20 +75,30 @@ function callInquirer(role) {
 
             // roleCnt++;
             // callInquirer(roles[roleCnt]);
-        });
 
-    // Selection menu
-    inquirer
-        .prompt([
-            {
-                type: 'list',
-                message: 'Select next step',
-                choices: ["Add engineer", "Add intern", "Finish"],
-                name: 'next'
-            }
-        ])
-        .then((response) => {
-            console.log(response.next);
+            // Selection menu
+            inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    message: 'Select next step',
+                    choices: ["Add engineer", "Add intern", "Finish"],
+                    name: 'next'
+                }
+            ])
+            .then((response) => {
+                switch (response.next) {
+                    case "Add engineer":
+                        callInquirer("engineer");
+                        break;
+                    case "Add intern":
+                        callInquirer("intern");
+                        break;
+                    case "Finish":
+                        // call function to generate HTML
+                }
+            });
+
         });
 }
 

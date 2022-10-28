@@ -16,6 +16,7 @@ const teamMembers = [];
 // function for creating manager - inquirer questions
 
 const roles = ["manager", "engineer", "intern"];
+const libs = [Manager, Engineer, Intern];
 let roleCnt = 0;
 
 const managerTest = {
@@ -36,6 +37,8 @@ const internTest = {
     name: 'school'
 }
 
+// follow the same pattern for each type of employee
+// build a function for them that uses inquirer
 function callInquirer(role) {
 
     inquirer
@@ -57,38 +60,36 @@ function callInquirer(role) {
             },
             eval(`${role}Test`)
         ])
-        // .then((response) =>
-        //     fs.writeFile(
-        //         `${response.fullName}.txt`,
-        //         `
-        //         Languages:
-        //         ${response.languages}\n
-        //         Communication preference:
-        //         ${response.communication}
-        //         `,
-        //         (err) => err ? console.error(err) : console.log('Custom File stored')
-        //     )
-        // )
         .then((response) => {
             const ans = Object.values(response);
             const [param1, param2, param3, param4] = ans;
-            // take those questions and create a new Manager with the user provided answers
-            const manager = new Manager(param1, param2, param3, param4);
-            // push that new Manager to the team members array
-            teamMembers.push(manager);
+            // take those questions and create a new Role with the user provided answers
+            const addition = new (libs[roleCnt])(param1, param2, param3, param4);
+            // push that new Role to the team members array
+            teamMembers.push(addition);
             console.log(teamMembers);
             // const filename = `${data.fullName.toLowerCase().split(' ').join('')}.json`;
             // fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) => 
             //     err ? console.log(err) : console.log('Success')
             // );
 
-            roleCnt++;
-            callInquirer(roles[roleCnt]);
+            // roleCnt++;
+            // callInquirer(roles[roleCnt]);
         });
 
-        // follow the same pattern for each type of employee
-        // build a function for them that uses inquirer
-
+    // Selection menu
+    inquirer
+        .prompt([
+            {
+                type: 'list',
+                message: 'Select next step',
+                choices: ["Add engineer", "Add intern", "Finish"],
+                name: 'next'
+            }
+        ])
+        .then((response) => {
+            console.log(response.next);
+        });
 }
 
 /*

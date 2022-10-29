@@ -4,6 +4,7 @@ const Intern = require('./lib/Intern');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
+const genTeam = require('./src/page-template');
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
@@ -87,6 +88,7 @@ function callInquirer(role) {
                         case "Finish":
                             // call function to generate HTML
                             // fs.writeFile(/path, generateTeam(teamMembers));
+                            genTeam(teamMembers);
                     }
                 });
 

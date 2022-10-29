@@ -44,7 +44,7 @@ function callInquirer(role) {
             {
                 type: 'input',
                 message: `Enter team ${role}\'s name`,
-                name: 'teamRole'
+                name: 'fName'
             },
             {
                 type: 'input',

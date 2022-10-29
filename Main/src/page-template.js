@@ -4,14 +4,16 @@ const generateTeam = team => {
     const generateManager = manager => {
         // console.log(Object.values(manager));
         // console.log(Object.keys(manager));
-        return `<div>
-                    <p class="text-4xl">${manager.name}</p>
-                    <p class="text-2xl">Manager</p>
-                    <ul class="list-disc">
-                        <li>ID: ${manager.id}</li>
-                        <li>Email: ${manager.email}</li>
-                        <li>Office number: ${manager.officeNumber}</li>
-                    </ul>
+        return `<div class="bg-indigo-100 m-4 w-auto w-64 h-auto shadow-xl">
+                    <div class="bg-indigo-500 p-4">
+                        <p class="text-white text-4xl">${manager.name}</p>
+                        <p class="text-white text-2xl pt-1"><span class="fa-solid fa-user-tie"></span> Manager</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="bg-indigo-200 text-indigo-900 text-base p-2 m-1">ID: ${manager.id}</p>
+                        <p class="bg-indigo-200 text-indigo-900 text-base p-2 m-1">Email: ${manager.email}</p>
+                        <p class="bg-indigo-200 text-indigo-900 text-base p-2 m-1">Office number: ${manager.officeNumber}</p>
+                    </div>
                 </div>`;
     };
 
@@ -19,14 +21,16 @@ const generateTeam = team => {
     const generateEngineer = engineer => {
         // console.log(Object.values(engineer));
         // console.log(Object.keys(engineer));
-        return `<div>
-                    <p class="text-4xl">${engineer.name}</p>
-                    <p class="text-2xl">Engineer</p>
-                    <ul class="list-disc">
-                        <li>ID: ${engineer.id}</li>
-                        <li>Email: ${engineer.email}</li>
-                        <li>GitHub: ${engineer.github}</li>
-                    </ul>
+        return `<div class="bg-indigo-100 m-4 w-auto w-64 h-auto shadow-xl">
+                    <div class="bg-indigo-500 p-4">
+                        <p class="text-white text-4xl">${engineer.name}</p>
+                        <p class="text-white text-2xl pt-1"><span class="fa-solid fa-compass-drafting"></span> Engineer</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="bg-indigo-200 text-indigo-900 text-base p-2 m-1">ID: ${engineer.id}</p>
+                        <p class="bg-indigo-200 text-indigo-900 text-base p-2 m-1">Email: ${engineer.email}</p>
+                        <p class="bg-indigo-200 text-indigo-900 text-base p-2 m-1">GitHub: ${engineer.github}</p>
+                    </div>
                 </div>`;
     };
 
@@ -34,14 +38,16 @@ const generateTeam = team => {
     const generateIntern = intern => {
         // console.log(Object.values(intern));
         // console.log(Object.keys(intern));
-        return `<div>
-                    <p class="text-4xl">${intern.name}</p>
-                    <p class="text-2xl">Intern</p>
-                    <ul class="list-disc">
-                        <li>ID: ${intern.id}</li>
-                        <li>Email: ${intern.email}</li>
-                        <li>School: ${intern.school}</li>
-                    </ul>
+        return `<div class="bg-indigo-100 m-4 w-auto w-64 h-auto shadow-xl">
+                    <div class="bg-indigo-500 p-4">
+                        <p class="text-white text-4xl">${intern.name}</p>
+                        <p class="text-white text-2xl pt-1"><span class="fa-solid fa-graduation-cap"></span> Intern</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="bg-indigo-200 text-indigo-900 text-base p-2 m-1">ID: ${intern.id}</p>
+                        <p class="bg-indigo-200 text-indigo-900 text-base p-2 m-1">Email: ${intern.email}</p>
+                        <p class="bg-indigo-200 text-indigo-900 text-base p-2 m-1">School: ${intern.school}</p>
+                    </div>
                 </div>`;
     };
 
@@ -73,21 +79,21 @@ module.exports = team => {
             <!-- Icon Library Link -->
             <link
                 rel="stylesheet"
-                href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-                integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-                crossorigin="anonymous"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+                integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="     crossorigin="anonymous" 
+                referrerpolicy="no-referrer"
             />
             <!-- CSS file -->
             <link rel="stylesheet" href="./assets/css/style.css" />
             <title>Team Creator</title>
         </head>
 
-        <body>
+        <body class="bg-indigo-200">
             <div class="bg-indigo-500 mx-auto text-center py-12">
                 <h1 class="text-3xl leading-9 font-bold tracking-tight text-white sm:text-4xl sm:leading-10">My Team</h1>
             </div>
 
-            <div class="container">
+            <div class="flex flex-row flex-wrap justify-center pt-8">
                 ${generateTeam(team)}
             </div>
         </body>

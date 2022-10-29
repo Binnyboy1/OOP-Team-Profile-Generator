@@ -88,7 +88,14 @@ function callInquirer(role) {
                         case "Finish":
                             // call function to generate HTML
                             // fs.writeFile(/path, generateTeam(teamMembers));
-                            genTeam(teamMembers);
+                            // genTeam(teamMembers);
+                            fs.writeFile('dist/index.html', genTeam(teamMembers), 'utf8', (err) => {
+                                if (err)
+                                  console.log(err);
+                                else {
+                                  console.log("File written successfully\n");
+                                }
+                            });
                     }
                 });
 
